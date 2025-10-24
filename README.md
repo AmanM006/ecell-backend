@@ -9,21 +9,6 @@ Cell, MIT Manipal.
 
 The response format is strictly enforced and will always follow the structure outlined below:
 
-```json
-{
-  "success": boolean,
-  // Indicates whether the operation was successful
-  "message": string,
-  // A descriptive message providing context or details
-  "payload": <Defined
-  TypeScript
-  Schema>
-  |
-  null
-  // Data returned by the operation, or null if not applicable
-}
-```
-
 * **`success`**: A boolean flag indicating the success or failure of the operation.
 * **`message`**: A string providing additional context or details about the operation, such as status messages or error
   descriptions.
