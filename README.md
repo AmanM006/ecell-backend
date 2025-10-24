@@ -45,8 +45,8 @@ Key files to note:
     * `/userRouter`: handle only routes
     * `/userController`: handle only request and response functionality
     * `/userService`: handle business logic
-    * `/userModel` or `/userRepository`: contain database (eg. MongoDb through Mongoose or SQL) models, preferably with
-      TypeScript Schemas
+    * `/userModel` or `/userRepository`: contain database (e.g. MongoDb through Mongoose or SQL) models, preferably with
+      TypeScript Schemas and request zod schemas
 * `src/common/middleware/requestLogger.ts`: logging setup.
 * `src/common/utils/envConfig.ts`: environment schema with Zod.
 
@@ -97,7 +97,7 @@ pnpm start
 ```
 
 The server listens (by default) on the port specified in your `.env` (e.g., `PORT=8080`). Health Check endpoint is
-available at `/api/health-check`.
+available at `/health-check`.
 
 ---
 
