@@ -5,7 +5,7 @@
   "main": "index.ts",
   "private": true,
   "scripts": {
-    "dev": "node --import=tsx --watch src/index.ts | pino-pretty",
+    "dev": "node --import=tsx --watch src/index.ts",
     "format": "prettier . --write --ignore-unknown",
     "format:check": "prettier . --check --ignore-unknown",
     "lint": "eslint .",
