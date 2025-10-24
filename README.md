@@ -14,7 +14,6 @@ The response format is strictly enforced and will always follow the structure ou
   "success": boolean,  // Indicates whether the operation was successful
   "message": string,   // A descriptive message providing context or details
   "payload": <Defined TypeScript Schema> | null,  // Data returned by the operation, or null if not applicable
-  "error": Error | null  // Error details if success is false
 }
 ```
 
