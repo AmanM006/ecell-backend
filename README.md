@@ -11,15 +11,24 @@ The response format is strictly enforced and will always follow the structure ou
 
 ```json
 {
-  "success": boolean,  // Indicates whether the operation was successful
-  "message": string,   // A descriptive message providing context or details
-  "payload": <Defined TypeScript Schema> | null,  // Data returned by the operation, or null if not applicable
+  "success": boolean,
+  // Indicates whether the operation was successful
+  "message": string,
+  // A descriptive message providing context or details
+  "payload": <Defined
+  TypeScript
+  Schema>
+  |
+  null
+  // Data returned by the operation, or null if not applicable
 }
 ```
 
 * **`success`**: A boolean flag indicating the success or failure of the operation.
-* **`message`**: A string providing additional context or details about the operation, such as status messages or error descriptions.
-* **`payload`**: A field that may contain a defined TypeScript schema, representing the data returned from the operation. If there is no data, this will be `null`.
+* **`message`**: A string providing additional context or details about the operation, such as status messages or error
+  descriptions.
+* **`payload`**: A field that may contain a defined TypeScript schema, representing the data returned from the
+  operation. If there is no data, this will be `null`.
 * **`error`**: This field will be included only if `success` is `false`
 
 ---
@@ -47,7 +56,12 @@ Here’s how the codebase is organised:
 
 Key files to note:
 
-* `src/api/user/userController.ts`, `userService.ts`, `userRepository.ts`: example module structure.
+* `src/api/<route, for eg.: user>`
+    * `/userRouter`: handle only routes
+    * `/userController`: handle only request and response functionality
+    * `/userService`: handle business logic
+    * `/userModel` or `/userRepository`: contain database (eg. MongoDb through Mongoose or SQL) models, preferably with
+      TypeScript Schemas
 * `src/common/middleware/requestLogger.ts`: logging setup.
 * `src/common/utils/envConfig.ts`: environment schema with Zod.
 
