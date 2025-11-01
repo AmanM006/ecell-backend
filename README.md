@@ -9,12 +9,12 @@ Cell, MIT Manipal.
 
 The response format is strictly enforced and will always follow the structure outlined below:
 
-* **`success`**: A boolean flag indicating the success or failure of the operation.
-* **`message`**: A string providing additional context or details about the operation, such as status messages or error
+- **`success`**: A boolean flag indicating the success or failure of the operation.
+- **`message`**: A string providing additional context or details about the operation, such as status messages or error
   descriptions.
-* **`payload`**: A field that may contain a defined TypeScript schema, representing the data returned from the
+- **`payload`**: A field that may contain a defined TypeScript schema, representing the data returned from the
   operation. If there is no data, this will be `null`.
-* **`error`**: This field will be included only if `success` is `false`
+- **`error`**: This field will be included only if `success` is `false`
 
 ---
 
@@ -31,7 +31,7 @@ The response format is strictly enforced and will always follow the structure ou
 Here’s how the codebase is organised:
 
 | Directory       | Purpose                                       |
-|-----------------|-----------------------------------------------|
+| --------------- | --------------------------------------------- |
 | `src/`          | Main application code                         |
 | `src/api/`      | Feature modules (e.g., `healthCheck`, `user`) |
 | `src/common/`   | Shared utilities, middleware, models          |
@@ -41,14 +41,14 @@ Here’s how the codebase is organised:
 
 Key files to note:
 
-* `src/api/<route, for eg.: user>`
-    * `/userRouter`: handle only routes
-    * `/userController`: handle only request and response functionality
-    * `/userService`: handle business logic
-    * `/userModel` or `/userRepository`: contain database (e.g. MongoDb through Mongoose or SQL) models, preferably with
-      TypeScript Schemas and request zod schemas
-* `src/common/middleware/requestLogger.ts`: logging setup.
-* `src/common/utils/envConfig.ts`: environment schema with Zod.
+- `src/api/<route, for eg.: user>`
+  - `/userRouter`: handle only routes
+  - `/userController`: handle only request and response functionality
+  - `/userService`: handle business logic
+  - `/userModel` or `/userRepository`: contain database (e.g. MongoDb through Mongoose or SQL) models, preferably with
+    TypeScript Schemas and request zod schemas
+- `src/common/middleware/requestLogger.ts`: logging setup.
+- `src/common/utils/envConfig.ts`: environment schema with Zod.
 
 ---
 
@@ -56,8 +56,8 @@ Key files to note:
 
 ### Dependencies
 
-* Node.js (preferably LTS version)
-* pnpm (or NPM/Yarn, but `pnpm` is used by default)
+- Node.js (preferably LTS version)
+- pnpm (or NPM/Yarn, but `pnpm` is used by default)
 
 ### Setup Steps
 
