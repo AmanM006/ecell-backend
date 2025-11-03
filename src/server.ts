@@ -2,14 +2,15 @@ import cors from "cors";
 import express, { type Express } from "express";
 import { pino } from "pino";
 
-import { healthCheckRouter } from "@/api/healthCheck/healthCheckRouter";
 import { env } from "@/common/utils/envConfig";
 import httpLogger from "@/common/middleware/requestLogger";
 import errorHandler from "@/common/middleware/errorHandler";
+import { healthCheckRouter } from "@/api/healthCheck/healthCheckRouter";
+import { submissionRouter } from "@/api/submission/submissionRouter";
 
 const serverLogger = pino({
   name: "server",
-  transport: env.isProduction ? undefined : { target: "pino-pretty" },
+  transport: env.isDevelopment ? { target: "pino-pretty" } : undefined,
 });
 const app: Express = express();
 
@@ -23,6 +24,7 @@ app.use(httpLogger);
 
 // Routes
 app.use("/health-check", healthCheckRouter);
+app.use("/submission", submissionRouter);
 
 // Error handlers
 app.use(errorHandler());
