@@ -1,11 +1,11 @@
-import { type ZodAny, type ZodError } from "zod";
+import { type ZodError, type ZodType } from "zod";
 import { type RequestHandler } from "express";
 import status from "http-status";
 
 import { HttpException } from "@/common/models/httpException";
 
 export const validateRequest =
-  (schema: ZodAny): RequestHandler =>
+  (schema: ZodType): RequestHandler =>
   async (req, _res, next) => {
     try {
       await schema.parseAsync({
