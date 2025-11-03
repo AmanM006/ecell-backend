@@ -12,10 +12,10 @@ export const createSubmission: RequestHandler = async (
   const validatedData = req.body;
 
   if (
-    await SubmissionService.isUnique(
+    !(await SubmissionService.isUnique(
       validatedData.email,
       validatedData.teamName,
-    )
+    ))
   ) {
     throw new HttpException(
       status.CONFLICT,
@@ -23,7 +23,7 @@ export const createSubmission: RequestHandler = async (
     );
   }
 
-  await SubmissionService.save(validatedData);
+  await SubmissionService.create(validatedData);
 
   return res.status(status.CREATED).json({
     success: true,

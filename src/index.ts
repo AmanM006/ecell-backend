@@ -6,8 +6,13 @@ import { env } from "@/common/utils/envConfig";
 (async () => {
   if (mongoose.connection.readyState >= 1) return;
 
+  const { isTest, isProduction, MONGODB_URL } = env;
+
   try {
-    await mongoose.connect(env.MONGODB_URL);
+    await mongoose.connect(MONGODB_URL, {
+      dbName: (isProduction && !isTest) ? "prod" : "dev",
+    });
+
     serverLogger.info("Connected to MongoDB");
   } catch (error) {
     serverLogger.error(error, "MongoDB connection error");

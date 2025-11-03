@@ -10,7 +10,7 @@ export const SubmissionService = {
     return !existingSubmission;
   },
 
-  async save(submissionData: CreateSubmissionDTO) {
+  async create(submissionData: CreateSubmissionDTO) {
     const submission = new Submission(submissionData);
     await submission.save();
   },
