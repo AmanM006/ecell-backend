@@ -1,7 +1,6 @@
 import { type ErrorRequestHandler, type RequestHandler } from "express";
 import status from "http-status";
 
-import { serverLogger } from "@/server";
 import { HttpException } from "@/common/models/httpException";
 
 const unexpectedRequest: RequestHandler = (req, res) => {
@@ -11,8 +10,6 @@ const unexpectedRequest: RequestHandler = (req, res) => {
 };
 
 const errorHandler: ErrorRequestHandler = (error, req, res) => {
-  serverLogger.error({ error, method: error.message });
-
   if (error instanceof HttpException) {
     return res.status(error.statusCode).json({
       success: false,
