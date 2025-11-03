@@ -10,7 +10,7 @@ import { env } from "@/common/utils/envConfig";
 
   try {
     await mongoose.connect(MONGODB_URL, {
-      dbName: (isProduction && !isTest) ? "prod" : "dev",
+      dbName: isProduction && !isTest ? "prod" : "dev",
     });
 
     serverLogger.info("Connected to MongoDB");

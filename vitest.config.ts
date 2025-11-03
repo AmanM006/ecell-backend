@@ -9,5 +9,5 @@ export default defineConfig({
       exclude: ["node_modules/", "dist/", "**/*.test.ts", "**/__tests__/**"],
     },
   },
-  plugins: [tsconfigPaths()]
+  plugins: [tsconfigPaths()],
 });

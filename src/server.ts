@@ -4,7 +4,10 @@ import { pino } from "pino";
 
 import { env } from "@/common/utils/envConfig";
 import httpLogger from "@/common/middleware/requestLogger";
-import errorHandler from "@/common/middleware/errorHandler";
+import {
+  errorHandler,
+  unexpectedRequest,
+} from "@/common/middleware/errorHandler";
 import { healthCheckRouter } from "@/api/healthCheck/healthCheckRouter";
 import { submissionRouter } from "@/api/submission/submissionRouter";
 
@@ -27,6 +30,7 @@ app.use("/health-check", healthCheckRouter);
 app.use("/submission", submissionRouter);
 
 // Error handlers
-app.use(errorHandler());
+app.use(unexpectedRequest);
+app.use(errorHandler);
 
 export { app, serverLogger };

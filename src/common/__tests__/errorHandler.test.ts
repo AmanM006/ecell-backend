@@ -2,7 +2,10 @@ import express, { type Express } from "express";
 import request from "supertest";
 import status from "http-status";
 
-import errorHandler from "@/common/middleware/errorHandler";
+import {
+  errorHandler,
+  unexpectedRequest,
+} from "@/common/middleware/errorHandler";
 
 describe("Error Handler Middleware", () => {
   let app: Express;
@@ -19,13 +22,12 @@ describe("Error Handler Middleware", () => {
       next(error);
     });
 
-    app.use(errorHandler());
+    app.use(unexpectedRequest);
+    app.use(errorHandler);
   });
 
   it("returns 404 for unknown routes", async () => {
-    const response = await request(app).get(
-      "/this-route-does-not-exist",
-    );
+    const response = await request(app).get("/this-route-does-not-exist");
     expect(response.status).toBe(status.NOT_FOUND);
   });
 

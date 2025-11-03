@@ -6,28 +6,33 @@ import { CreateSubmissionDTO } from "@/api/submission/submissionDto";
 import { SubmissionService } from "@/api/submission/submissionService";
 
 export const createSubmission: RequestHandler = async (
-  req: Request<any, any, CreateSubmissionDTO>,
+  req: Request<unknown, unknown, CreateSubmissionDTO>,
   res,
+  next,
 ) => {
-  const validatedData = req.body;
+  try {
+    const validatedData = req.body;
 
-  if (
-    !(await SubmissionService.isUnique(
-      validatedData.email,
-      validatedData.teamName,
-    ))
-  ) {
-    throw new HttpException(
-      status.CONFLICT,
-      "A submission with this email or team name already exists",
-    );
+    if (
+      !(await SubmissionService.isUnique(
+        validatedData.email,
+        validatedData.teamName,
+      ))
+    ) {
+      throw new HttpException(
+        status.CONFLICT,
+        "A submission with this email or team name already exists",
+      );
+    }
+
+    await SubmissionService.create(validatedData);
+
+    return res.status(status.CREATED).json({
+      success: true,
+      message: "Submission created successfully",
+      payload: null,
+    });
+  } catch (error) {
+    next(error);
   }
-
-  await SubmissionService.create(validatedData);
-
-  return res.status(status.CREATED).json({
-    success: true,
-    message: "Submission created successfully",
-    payload: null,
-  });
 };
