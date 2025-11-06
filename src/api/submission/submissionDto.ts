@@ -19,17 +19,6 @@ export const TeamMemberSchema = z.object({
   yearOfStudy: YearOfStudySchema,
 });
 
-export const IdeaDetailsSchema = z.object({
-  problemStatement: z.string().trim(),
-  proposedSolution: z.string().trim(),
-  startupDescription: z.string().trim(),
-  targetAudience: z.string().trim(),
-  uniqueValueProposition: z.string().trim(),
-  scalingPlan: z.string().trim(),
-  marketingChannels: z.string().trim(),
-  businessModel: z.string().trim(),
-});
-
 export const SupportingFilesSchema = z.object({
   pitchDeckUrl: z
     .url("Pitch deck URL must be a valid URL")
@@ -76,8 +65,6 @@ export const CreateSubmissionSchema = z.object({
     .max(4, "Maximum 4 team members allowed (excluding team leader)")
     .default([]),
 
-  ideaDetails: IdeaDetailsSchema,
-
   supportingFiles: SupportingFilesSchema,
 });
 
@@ -102,5 +89,4 @@ export type CreateSubmissionDTO = z.infer<typeof CreateSubmissionSchema>;
 export type GetSubmissionByIdDTO = z.infer<typeof GetSubmissionByIdSchema>;
 export type GetSubmissionsQueryDTO = z.infer<typeof GetSubmissionsQuerySchema>;
 export type TeamMemberDTO = z.infer<typeof TeamMemberSchema>;
-export type IdeaDetailsDTO = z.infer<typeof IdeaDetailsSchema>;
 export type SupportingFilesDTO = z.infer<typeof SupportingFilesSchema>;

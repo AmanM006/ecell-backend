@@ -15,17 +15,6 @@ interface ITeamMember {
   yearOfStudy: YearOfStudy;
 }
 
-interface IIdeaDetails {
-  problemStatement: string;
-  proposedSolution: string;
-  startupDescription: string;
-  targetAudience: string;
-  uniqueValueProposition: string;
-  scalingPlan: string;
-  marketingChannels: string;
-  businessModel: string;
-}
-
 interface ISupportingFiles {
   pitchDeckUrl: string;
   pitchVideoUrl: string;
@@ -42,8 +31,6 @@ interface ISubmission extends Document {
 
   teamMembers: ITeamMember[];
 
-  ideaDetails: IIdeaDetails;
-
   supportingFiles: ISupportingFiles;
 }
 
@@ -58,52 +45,6 @@ const teamMemberSchema = new Schema<ITeamMember>(
       type: Number,
       required: true,
       enum: [1, 2, 3, 4, 5],
-    },
-  },
-  { _id: false },
-);
-
-const ideaDetailsSchema = new Schema<IIdeaDetails>(
-  {
-    problemStatement: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    proposedSolution: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    startupDescription: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    targetAudience: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    uniqueValueProposition: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    scalingPlan: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    marketingChannels: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    businessModel: {
-      type: String,
-      required: true,
-      trim: true,
     },
   },
   { _id: false },
@@ -180,11 +121,6 @@ const submissionSchema = new Schema<ISubmission>(
       },
     },
 
-    ideaDetails: {
-      type: ideaDetailsSchema,
-      required: [true, "Idea details are required"],
-    },
-
     supportingFiles: {
       type: supportingFilesSchema,
       required: [true, "Supporting files are required"],
@@ -207,7 +143,6 @@ export const Submission = model<ISubmission>("submission", submissionSchema);
 export {
   type ISubmission,
   type ITeamMember,
-  type IIdeaDetails,
   type ISupportingFiles,
   YearOfStudy,
 };
